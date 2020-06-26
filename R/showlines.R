@@ -2,7 +2,8 @@ showlines <- function(data, n) {
 
   if (data[n,2,1] == FALSE) {
 
-    cat("No hits found.")
+    cat("No hits found.
+        ")
     return(data)
 
   } else {
