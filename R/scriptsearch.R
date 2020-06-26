@@ -1,15 +1,13 @@
 scriptsearch <- function(dir, searchterms, filetypes = c(".R", ".rmd"), showlines = 0){
 
-  files <- list.files(dir, recursive = TRUE, include.dirs = TRUE)
-  files <- files[str_detect(files, paste(filetypes, collapse = "|"))]
-
+  files <- searchdir(dir = dir, filetypes = filetypes)
   data <- data.frame(1:length(files),2)
   colnames(data) <- c("Path", "Hits")
 
   for (i in 1:length(files)) {
 
     tempdata <- readLines(paste0(dir,"/",files[i]))
-    temppos <- which(str_detect(tempdata, paste(searchterms, collapse = "|")))
+    temppos <- which(stringr::str_detect(tempdata, paste(searchterms, collapse = "|")))
     data[i,1] <- paste0(dir,"/",files[i])
 
     if (length(temppos) == 0) {
