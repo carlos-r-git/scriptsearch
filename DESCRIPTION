@@ -1,16 +1,16 @@
 Package: scriptsearch
-Title: What the Package Does (One Line, Title Case)
+Title: A package for searching for text within existing scripts.
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+    person(given = "Carlos",
+           family = "Riechmann",
+           email = "cr1056@york.ac.uk",
+           role = c("aut", "cre"))
+Description: Intended to provide a method for searching previous work for functions or comments.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
+Imports:
+    stringr
