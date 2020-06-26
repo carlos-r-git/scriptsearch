@@ -1,17 +1,15 @@
-showlines <- function(dir, searchterms, filetypes = c(".R", ".rmd"), file) {
+showlines <- function(data, n) {
 
-  files <- searchdir(dir = dir, filetypes = filetypes)
-
-  data <- scriptsearch(dir = dir, searchterms = searchterms, filetypes = filetypes)
-
-  if (data[file,2] == FALSE) {
+  if (data[n,2,1] == FALSE) {
 
     cat("No hits found.")
     return(data)
 
   } else {
 
-    tempdata <- readfile(dir = dir, files = files, i = file)
+    searchterms <- data[n,3,1]
+
+    tempdata <- readfile(file = data[n,1,1])
 
     temppos <- findlines(tempdata = tempdata, searchterms = searchterms)
 
@@ -21,7 +19,7 @@ showlines <- function(dir, searchterms, filetypes = c(".R", ".rmd"), file) {
     for (i in 1:length(temppos)) {
 
       temphits[i,1] <- temppos[i]
-      temphits[i,2] <- tempdata[temppos[i]]
+      temphits[i,2] <- shortenstring(tempdata[temppos[i]])
 
     }
 
