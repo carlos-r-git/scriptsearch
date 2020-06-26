@@ -1,6 +1,6 @@
-readfile <- function(dir, files, i) {
+readfile <- function(file) {
 
-  tempdata <- readLines(paste0(dir,"/",files[i]))
+  tempdata <- readLines(file)
   return(tempdata)
 
 }
