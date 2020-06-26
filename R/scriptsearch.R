@@ -1,4 +1,15 @@
-scriptsearch <- function(dir, searchterms, filetypes = c(".R", ".rmd")) {
+#' scriptsearch
+#'
+#' @param dir Path of the directory containing files.
+#' @param searchterms Text strings you are looking for.
+#' @param filetypes Types of files that will be read.
+#'
+#' @return Data frame containing: file paths, TRUE/FALSE if text detected and search terms.
+#' @export
+#'
+#' @examples scriptsearch()
+
+scriptsearch <- function(dir, searchterms, filetypes = c("\\.R$", "\\.Rmd$")) {
 
   files <- searchdir(dir = dir, filetypes = filetypes)
 
@@ -29,3 +40,4 @@ scriptsearch <- function(dir, searchterms, filetypes = c(".R", ".rmd")) {
   return(data)
 
 }
+
