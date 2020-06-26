@@ -22,6 +22,9 @@ scriptsearch <- function(dir, searchterms, filetypes = c(".R", ".rmd")) {
       data[i,2] <- "TRUE"
 
     }
+
   }
+
   return(data)
+
 }

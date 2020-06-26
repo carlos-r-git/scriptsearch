@@ -24,6 +24,7 @@ showlines <- function(dir, searchterms, filetypes = c(".R", ".rmd"), file) {
       temphits[i,2] <- tempdata[temppos[i]]
 
     }
+
   }
 
   return(temphits)
