@@ -1,3 +1,15 @@
+#' shortenstring
+#'
+#' Shortens a string if it is longer than 50 characters.
+#'
+#' @param string The string to be shortened.
+#'
+#' @return The shortened string.
+#' @export
+#'
+#' @examples
+#' shortenstring("text")
+
 shortenstring <- function(string) {
 
   if (nchar(string) > 50) {

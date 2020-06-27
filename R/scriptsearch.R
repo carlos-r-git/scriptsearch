@@ -1,14 +1,17 @@
 #' scriptsearch
 #'
-#' @param dir Path of the directory containing files.
-#' @param searchterms Text strings you are looking for.
+#' Create a table listing files in a directory that contain specified strings.
+#'
+#' @param dir Path of the directory.
+#' @param searchterms Strings to search for.
 #' @param rm TRUE/FALSE for removing files with no hits from the output.
-#' @param filetypes Types of files that will be read.
+#' @param filetypes Strings to be recognised in file names.
 #'
 #' @return Data frame containing: file paths, TRUE/FALSE if text detected and search terms.
 #' @export
 #'
-#' @examples scriptsearch(".", "ggplot")
+#' @examples
+#' scriptsearch(".", "x")
 
 scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\.Rmd$")) {
 
@@ -20,7 +23,7 @@ scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\
 
   for (i in 1:length(files)) {
 
-    tempdata <- readfile(file = paste0(dir,"/",files[i]))
+    tempdata <- readLines(paste0(dir,"/",files[i]), warn = FALSE)
 
     temppos <- findlines(tempdata = tempdata, searchterms = searchterms)
 

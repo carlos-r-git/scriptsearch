@@ -1,3 +1,16 @@
+#' showlines
+#'
+#' List the lines containing searchterms from the file in the nth row of a data frame (output of scriptsearch).
+#'
+#' @param data The data frame output from scriptsearch().
+#' @param n The row number of the file to be searched.
+#'
+#' @return Table with the line number and first 50 characters of each line that contains searchterms.
+#' @export
+#'
+#' @examples
+#' showlines(scriptsearch(".", "search"), 1)
+
 showlines <- function(data, n) {
 
   if (data[n,2,1] == FALSE) {
@@ -10,7 +23,7 @@ showlines <- function(data, n) {
 
     searchterms <- data[n,3,1]
 
-    tempdata <- readfile(file = data[n,1,1])
+    tempdata <- readLines(data[n,1,1], warn = FALSE)
 
     temppos <- findlines(tempdata = tempdata, searchterms = searchterms)
 
