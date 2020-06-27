@@ -9,7 +9,7 @@
 #'
 #' @examples scriptsearch()
 
-scriptsearch <- function(dir, searchterms, filetypes = c("\\.R$", "\\.Rmd$")) {
+scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\.Rmd$")) {
 
   files <- searchdir(dir = dir, filetypes = filetypes)
 
@@ -37,7 +37,13 @@ scriptsearch <- function(dir, searchterms, filetypes = c("\\.R$", "\\.Rmd$")) {
 
   }
 
+  if (isTRUE(rm)) {
+
+    data <- data[data$Hits == TRUE,]
+    rownames(data) <- 1:length(data$Hits)
+
+  }
+
   return(data)
 
 }
-
