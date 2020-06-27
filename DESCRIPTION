@@ -1,12 +1,12 @@
 Package: scriptsearch
-Title: A package for searching for text within existing scripts.
+Title: A package for searching for text within existing scripts
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Carlos",
            family = "Riechmann",
            email = "cr1056@york.ac.uk",
            role = c("aut", "cre"))
-Description: Intended to provide a method for searching previous work for functions or comments.
+Description: Are your files poorly documented? Can't find that one script you wrote a year ago? scriptsearch is a fucntion for searching R scripts for text strings.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
