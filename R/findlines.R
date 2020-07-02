@@ -2,7 +2,7 @@
 #'
 #' Returns indicies of items of a list that contain searchterms.
 #'
-#' @param tempdata A list of characters to be searched.
+#' @param tempdata Lines of text to be searched.
 #' @param searchterms Strings to search for.
 #'
 #' @return A list of indicies.
