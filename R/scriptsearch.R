@@ -41,7 +41,14 @@ scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\
 
   }
 
+
   if (isTRUE(rm)) {
+
+    if (!is.null(which(data$Hits == TRUE))) {
+
+      return("No files containing search terms found.")
+
+    }
 
     data <- data[data$Hits == TRUE,]
     rownames(data) <- 1:length(data$Hits)
