@@ -13,6 +13,11 @@
 
 showlines <- function(data, n) {
 
+  coll <- checkmate::makeAssertCollection()
+  checkmate::assertDataFrame(data, ncols = 3)
+  checkmate::assertNumber(n, lower = 1, upper = length(data$Path))
+  checkmate::reportAssertions(coll)
+
   if (data[n,2,1] == FALSE) {
 
     cat("No hits found.

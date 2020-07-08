@@ -15,6 +15,13 @@
 
 scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\.Rmd$")) {
 
+  coll <- checkmate::makeAssertCollection()
+  checkmate::assertDirectoryExists(dir)
+  checkmate::assertCharacter(searchterms)
+  checkmate::assertLogical(rm)
+  checkmate::assertCharacter(filetypes)
+  checkmate::reportAssertions(coll)
+
   files <- searchdir(dir = dir, filetypes = filetypes)
 
   data <- data.frame(1:length(files),0,0)
