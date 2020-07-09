@@ -21,6 +21,12 @@ showlines <- function(data, n) {
 
     }
 
+    if (data == "No files found in directory."){
+
+      return (data)
+
+    }
+
   }
 
   coll <- checkmate::makeAssertCollection()
@@ -36,7 +42,7 @@ showlines <- function(data, n) {
 
   } else {
 
-    searchterms <- data[n,3,1]
+    searchterms <- data[n,3,1][[1]]
 
     tempdata <- readLines(data[n,1,1], warn = FALSE)
 
