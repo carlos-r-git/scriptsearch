@@ -24,9 +24,14 @@ scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\
 
   files <- searchdir(dir = dir, filetypes = filetypes)
 
+  if (length(files) == 0){
+
+    return("No files found in directory.")
+
+  }
+
   data <- data.frame(1:length(files),0,0)
   colnames(data) <- c("Path", "Hits", "Searchterms")
-  data[,3] <- searchterms
 
   for (i in 1:length(files)) {
 
@@ -40,6 +45,8 @@ scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\
 
   }
 
+  command <- paste0("data$Searchterms <- ", "list(", strrep("searchterms, ", (length(files) - 1)), "searchterms", ")")
+  eval(parse(text = command))
 
   if (isTRUE(rm)) {
 
