@@ -30,8 +30,7 @@ scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\
 
   }
 
-  data <- data.frame(1:length(files),0,0)
-  colnames(data) <- c("Path", "Hits", "Searchterms")
+  data <- data.frame("Path" = 1:length(files), "Hits" = 0, "Searchterms" = 0)
 
   for (i in 1:length(files)) {
 

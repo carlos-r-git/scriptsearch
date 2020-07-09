@@ -48,8 +48,7 @@ showlines <- function(data, n) {
 
     temppos <- findlines(tempdata = tempdata, searchterms = searchterms)
 
-    temphits <- data.frame(1:length(temppos),2)
-    colnames(temphits) <- c("Line", "Text")
+    temphits <- data.frame("Line" = 1:length(temppos), "Text" = 0)
 
     for (i in 1:length(temppos)) {
 
