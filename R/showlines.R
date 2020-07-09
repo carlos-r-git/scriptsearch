@@ -13,12 +13,22 @@
 
 showlines <- function(data, n) {
 
+  if (length(data) == 1 ){
+
+    if (data == "No files containing search terms found."){
+
+      return (data)
+
+    }
+
+  }
+
   coll <- checkmate::makeAssertCollection()
   checkmate::assertDataFrame(data, ncols = 3)
   checkmate::assertNumber(n, lower = 1, upper = length(data$Path))
   checkmate::reportAssertions(coll)
 
-  if (data[n,2,1] == FALSE) {
+  if (data[n,2,1] == 0) {
 
     cat("No hits found.
         ")
