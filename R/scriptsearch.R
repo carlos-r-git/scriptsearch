@@ -36,28 +36,20 @@ scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\
 
     data[i,1] <- paste0(dir,"/",files[i])
 
-    if (length(temppos) == 0) {
-
-      data[i,2] <- "FALSE"
-
-    } else {
-
-      data[i,2] <- "TRUE"
-
-    }
+    data[i,2] <- length(temppos)
 
   }
 
 
   if (isTRUE(rm)) {
 
-    if (length(which(data$Hits == TRUE)) == 0) {
+    if (length(which(data$Hits >= 1)) == 0) {
 
       return("No files containing search terms found.")
 
     }
 
-    data <- data[data$Hits == TRUE,]
+    data <- data[data$Hits >= 1,]
     rownames(data) <- 1:length(data$Hits)
 
   }
