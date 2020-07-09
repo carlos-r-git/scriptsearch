@@ -37,7 +37,7 @@ showlines <- function(data, n) {
   if (data[n,2,1] == 0) {
 
     cat("No hits found.
-        ")
+")
     return(data)
 
   } else {
