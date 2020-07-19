@@ -7,7 +7,10 @@
 
 <!-- badges: end -->
 
-The goal of scriptsearch is to …
+Scriptsearch is a package for searching R scripts you have previously
+made, but haven’t documented. This is intended to help students look
+back at their old work and enable them to reuse the solutions they have
+already learned.
 
 ## Installation
 
@@ -27,33 +30,38 @@ devtools::install_github("carlos-r-git/scriptsearch")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The function `scriptsearch` lists all files in a directory that contain
+specified search terms.
 
 ``` r
 library(scriptsearch)
-## basic example code
+
+scriptsearch(dir = ".", searchterms = "search")
+#>                                   Path Hits Searchterms
+#> 1                      ./R/findlines.R    5      search
+#> 2                   ./R/scriptsearch.R   10      search
+#> 3                      ./R/searchdir.R    3      search
+#> 4                      ./R/showlines.R    8      search
+#> 5                         ./README.Rmd   11      search
+#> 6                   ./tests/testthat.R    2      search
+#> 7 ./tests/testthat/test-scriptsearch.R   10      search
+#> 8    ./tests/testthat/test-searchdir.R    3      search
+#> 9    ./tests/testthat/test-showlines.R    1      search
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+`showlines` can then be used on the output of `scriptsearch` to show all
+lines containing hits from the n<sup>th</sup> file in the list.
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+library(scriptsearch)
+
+data <- scriptsearch(dir = ".", searchterms = "search")
+
+showlines(data = data, n = 1)
+#>   Line                                                  Text
+#> 1    3 #' Returns indicies of items of a list that contai...
+#> 2    5      #' @param tempdata Lines of text to be searched.
+#> 3    6          #' @param searchterms Strings to search for.
+#> 4   14        findlines <- function(tempdata, searchterms) {
+#> 5   16   temppos <- which(stringr::str_detect(tempdata, p...
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
