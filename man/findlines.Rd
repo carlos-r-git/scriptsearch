@@ -7,7 +7,7 @@
 findlines(tempdata, searchterms)
 }
 \arguments{
-\item{tempdata}{A list of characters to be searched.}
+\item{tempdata}{Lines of text to be searched.}
 
 \item{searchterms}{Strings to search for.}
 }
