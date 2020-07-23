@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-Scriptsearch is a package for searching R scripts you have previously made, but haven't documented. This is intended to help students look back at their old work and enable them to reuse the solutions they have already learned.
+Scriptsearch is a package for searching R scripts you have previously made, but forgot to document. This is intended to help students look back at their old work and enable them to reuse solutions they have already learned.
 
 ## Installation
 
@@ -52,4 +52,32 @@ library(scriptsearch)
 data <- scriptsearch(dir = ".", searchterms = "search")
 
 showlines(data = data, n = 1)
+```
+
+## scriptsearch
+
+```{r arguments, echo = FALSE}
+
+table1 <- data.frame("Argument" = c("dir", "searchterms", "rm", "filetypes"),
+                     "Default"  = c("N/A", "N/A", "TRUE", ".R, .Rmd"),
+                     "Function" = c("Path of the directory", "Strings to search for", "Remove files with no hits from output", "Strings to be recognised in file names"),
+                     "Example"  = c("\"./scripts\"", "c(\"text1\", \"text2\")", "TRUE", ".R, .Rmd"))
+
+table1 %>% 
+  knitr::kable()
+
+```
+
+## showlines
+
+```{r arguments2, echo = FALSE}
+
+table2 <- data.frame("Argument" = c("data", "n", "open"),
+                     "Default"  = c("N/A", "N/A", "FALSE"),
+                     "Function" = c("Table containing files and searchterms", "Row number of the file to be searched", "Open selected file"),
+                     "Example"  = c("data <- scriptsearch(\"./scripts\", \"text\")", "1", "TRUE"))
+
+table2 %>% 
+  knitr::kable()
+
 ```

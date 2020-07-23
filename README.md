@@ -8,8 +8,8 @@
 <!-- badges: end -->
 
 Scriptsearch is a package for searching R scripts you have previously
-made, but haven’t documented. This is intended to help students look
-back at their old work and enable them to reuse the solutions they have
+made, but forgot to document. This is intended to help students look
+back at their old work and enable them to reuse solutions they have
 already learned.
 
 ## Installation
@@ -42,7 +42,7 @@ scriptsearch(dir = ".", searchterms = "search")
 #> 2                   ./R/scriptsearch.R   10      search
 #> 3                      ./R/searchdir.R    3      search
 #> 4                      ./R/showlines.R    8      search
-#> 5                         ./README.Rmd   11      search
+#> 5                         ./README.Rmd   16      search
 #> 6                   ./tests/testthat.R    2      search
 #> 7 ./tests/testthat/test-scriptsearch.R   10      search
 #> 8    ./tests/testthat/test-searchdir.R    3      search
@@ -65,3 +65,20 @@ showlines(data = data, n = 1)
 #> 4   14        findlines <- function(tempdata, searchterms) {
 #> 5   16   temppos <- which(stringr::str_detect(tempdata, p...
 ```
+
+## scriptsearch
+
+| Argument    | Default  | Function                               | Example             |
+| :---------- | :------- | :------------------------------------- | :------------------ |
+| dir         | N/A      | Path of the directory                  | “./scripts”         |
+| searchterms | N/A      | Strings to search for                  | c(“text1”, “text2”) |
+| rm          | TRUE     | Remove files with no hits from output  | TRUE                |
+| filetypes   | .R, .Rmd | Strings to be recognised in file names | .R, .Rmd            |
+
+## showlines
+
+| Argument | Default | Function                               | Example                                    |
+| :------- | :------ | :------------------------------------- | :----------------------------------------- |
+| data     | N/A     | Table containing files and searchterms | data \<- scriptsearch(“./scripts”, “text”) |
+| n        | N/A     | Row number of the file to be searched  | 1                                          |
+| open     | FALSE   | Open selected file                     | TRUE                                       |
