@@ -16,4 +16,7 @@ Imports:
     stringr,
     checkmate
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
