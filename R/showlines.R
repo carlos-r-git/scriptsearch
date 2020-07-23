@@ -4,14 +4,15 @@
 #'
 #' @param data The data frame output from scriptsearch().
 #' @param n The row number of the file to be searched.
+#' @param open Logical option for opening the selected file.
 #'
 #' @return Table with the line number and first 50 characters of each line that contains searchterms.
 #' @export
 #'
 #' @examples
-#' showlines(scriptsearch(".", "search"), 1)
+#' showlines(scriptsearch(".", "search"), 1, open = TRUE)
 
-showlines <- function(data, n) {
+showlines <- function(data, n, open = FALSE) {
 
   if (length(data) == 1 ){
 
@@ -32,6 +33,7 @@ showlines <- function(data, n) {
   coll <- checkmate::makeAssertCollection()
   checkmate::assertDataFrame(data, ncols = 3)
   checkmate::assertNumber(n, lower = 1, upper = length(data$Path))
+  checkmate::assertLogical(open)
   checkmate::reportAssertions(coll)
 
   if (data[n,2,1] == 0) {
@@ -56,6 +58,12 @@ showlines <- function(data, n) {
       temphits[i,2] <- shortenstring(tempdata[temppos[i]])
 
     }
+
+  }
+
+  if (open == TRUE) {
+
+    edit_file(data[n,1,1])
 
   }
 
