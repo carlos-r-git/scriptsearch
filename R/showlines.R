@@ -65,7 +65,7 @@ showlines <- function(data, n, open = TRUE) {
 
   if (open == TRUE) {
 
-    edit_file(data[n,1,1])
+    usethis::edit_file(data[n,1,1])
 
   }
 
