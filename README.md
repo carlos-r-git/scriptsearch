@@ -14,7 +14,7 @@ already learned.
 
 ## Installation
 
-You can install the released version of scriptsearch from
+(Coming soon) You can install the released version of scriptsearch from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
@@ -37,16 +37,17 @@ specified search terms.
 library(scriptsearch)
 
 scriptsearch(dir = ".", searchterms = "search")
-#>                                   Path Hits Searchterms
-#> 1                      ./R/findlines.R    5      search
-#> 2                   ./R/scriptsearch.R   10      search
-#> 3                      ./R/searchdir.R    3      search
-#> 4                      ./R/showlines.R    8      search
-#> 5                         ./README.Rmd   16      search
-#> 6                   ./tests/testthat.R    2      search
-#> 7 ./tests/testthat/test-scriptsearch.R   10      search
-#> 8    ./tests/testthat/test-searchdir.R    3      search
-#> 9    ./tests/testthat/test-showlines.R    1      search
+#>                                    Path Hits Searchterms
+#> 1                       ./R/findlines.R    5      search
+#> 2                    ./R/scriptsearch.R   10      search
+#> 3                       ./R/searchdir.R    3      search
+#> 4                       ./R/showlines.R    8      search
+#> 5                          ./README.Rmd   16      search
+#> 6                    ./tests/testthat.R    2      search
+#> 7  ./tests/testthat/test-scriptsearch.R   10      search
+#> 8     ./tests/testthat/test-searchdir.R    3      search
+#> 9     ./tests/testthat/test-showlines.R    1      search
+#> 10          ./vignettes/my-vignette.Rmd    1      search
 ```
 
 `showlines` can then be used on the output of `scriptsearch` to show all
@@ -81,4 +82,4 @@ showlines(data = data, n = 1)
 | :------- | :------ | :------------------------------------- | :----------------------------------------- |
 | data     | N/A     | Table containing files and searchterms | data \<- scriptsearch(“./scripts”, “text”) |
 | n        | N/A     | Row number of the file to be searched  | 1                                          |
-| open     | FALSE   | Open selected file                     | TRUE                                       |
+| open     | TRUE    | Open selected file                     | TRUE                                       |

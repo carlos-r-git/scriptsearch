@@ -22,7 +22,7 @@ Scriptsearch is a package for searching R scripts you have previously made, but 
 
 ## Installation
 
-You can install the released version of scriptsearch from [CRAN](https://CRAN.R-project.org) with:
+(Coming soon) You can install the released version of scriptsearch from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("scriptsearch")
@@ -73,7 +73,7 @@ table1 %>%
 ```{r arguments2, echo = FALSE}
 
 table2 <- data.frame("Argument" = c("data", "n", "open"),
-                     "Default"  = c("N/A", "N/A", "FALSE"),
+                     "Default"  = c("N/A", "N/A", "TRUE"),
                      "Function" = c("Table containing files and searchterms", "Row number of the file to be searched", "Open selected file"),
                      "Example"  = c("data <- scriptsearch(\"./scripts\", \"text\")", "1", "TRUE"))
 

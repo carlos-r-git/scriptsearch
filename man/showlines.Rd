@@ -4,12 +4,12 @@
 \alias{showlines}
 \title{showlines}
 \usage{
-showlines(data, n, open = FALSE)
+showlines(data, n, open = TRUE)
 }
 \arguments{
 \item{data}{The data frame output from scriptsearch().}
 
-\item{n}{The row number of the file to be searched.}
+\item{n}{The index of the file to be searched.}
 
 \item{open}{Logical option for opening the selected file.}
 }
@@ -17,8 +17,10 @@ showlines(data, n, open = FALSE)
 Table with the line number and first 50 characters of each line that contains searchterms.
 }
 \description{
-List the lines containing searchterms from the file in the nth row of a data frame (output of scriptsearch).
+Open and list lines containing searchterms from the nth file in the output of scriptsearch().
 }
 \examples{
-showlines(scriptsearch(".", "search"), 1, open = TRUE)
+
+data <- scriptsearch(".", "text")
+showlines(data, 1, open = TRUE)
 }
