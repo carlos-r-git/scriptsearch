@@ -30,49 +30,45 @@ devtools::install_github("carlos-r-git/scriptsearch")
 
 ## Example
 
-The function `scriptsearch` lists all files in a directory that contain
-specified search terms.
+The function `scriptsearch` lists all files in a directory (defaults to
+present working directory) that contain specified search terms.
 
 ``` r
 library(scriptsearch)
 
-scriptsearch(dir = ".", searchterms = "search")
-#>                                    Path Hits Searchterms
-#> 1                       ./R/findlines.R    5      search
-#> 2                    ./R/scriptsearch.R   10      search
-#> 3                       ./R/searchdir.R    3      search
-#> 4                       ./R/showlines.R    8      search
-#> 5                          ./README.Rmd   16      search
-#> 6                    ./tests/testthat.R    2      search
-#> 7  ./tests/testthat/test-scriptsearch.R   10      search
-#> 8     ./tests/testthat/test-searchdir.R    3      search
-#> 9     ./tests/testthat/test-showlines.R    1      search
-#> 10          ./vignettes/my-vignette.Rmd    1      search
+scriptsearch("example")
+#>                  Path Hits Searchterms
+#> 1     ./R/findlines.R    1     example
+#> 2  ./R/scriptsearch.R    1     example
+#> 3     ./R/searchdir.R    1     example
+#> 4 ./R/shortenstring.R    1     example
+#> 5     ./R/showlines.R    1     example
+#> 6        ./README.Rmd    4     example
 ```
 
 `showlines` can then be used on the output of `scriptsearch` to show all
 lines containing hits from the n<sup>th</sup> file in the list.
 
-``` r
+```` r
 library(scriptsearch)
 
-data <- scriptsearch(dir = ".", searchterms = "search")
+data <- scriptsearch("example")
 
-showlines(data = data, n = 1)
-#>   Line                                                  Text
-#> 1    3 #' Returns indicies of items of a list that contai...
-#> 2    5      #' @param tempdata Lines of text to be searched.
-#> 3    6          #' @param searchterms Strings to search for.
-#> 4   14        findlines <- function(tempdata, searchterms) {
-#> 5   16   temppos <- which(stringr::str_detect(tempdata, p...
-```
+showlines(data, 6)
+#> * Edit './README.Rmd'
+#>   Line                            Text
+#> 1   41                  ```{r example}
+#> 2   44         scriptsearch("example")
+#> 3   49                 ```{r example2}
+#> 4   52 data <- scriptsearch("example")
+````
 
 ## scriptsearch
 
 | Argument    | Default  | Function                               | Example             |
 | :---------- | :------- | :------------------------------------- | :------------------ |
-| dir         | N/A      | Path of the directory                  | “./scripts”         |
 | searchterms | N/A      | Strings to search for                  | c(“text1”, “text2”) |
+| dir         | “.”      | Directory to search                    | “./scripts”         |
 | rm          | TRUE     | Remove files with no hits from output  | TRUE                |
 | filetypes   | .R, .Rmd | Strings to be recognised in file names | .R, .Rmd            |
 

@@ -2,8 +2,8 @@
 #'
 #' Create a table listing files in a directory that contain specified strings.
 #'
-#' @param dir Path of the directory.
 #' @param searchterms Strings to search for.
+#' @param dir Path of the directory.
 #' @param rm TRUE/FALSE for removing files with no hits from the output.
 #' @param filetypes Strings to be recognised in file names.
 #'
@@ -11,13 +11,13 @@
 #' @export
 #'
 #' @examples
-#' scriptsearch(".", "x")
+#' scriptsearch("text")
 
-scriptsearch <- function(dir, searchterms, rm = TRUE, filetypes = c("\\.R$", "\\.Rmd$")) {
+scriptsearch <- function(searchterms, dir = ".", rm = TRUE, filetypes = c("\\.R$", "\\.Rmd$")) {
 
   coll <- checkmate::makeAssertCollection()
-  checkmate::assertDirectoryExists(dir)
   checkmate::assertCharacter(searchterms)
+  checkmate::assertDirectoryExists(dir)
   checkmate::assertLogical(rm)
   checkmate::assertCharacter(filetypes)
   checkmate::reportAssertions(coll)

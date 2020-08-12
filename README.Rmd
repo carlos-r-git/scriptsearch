@@ -36,12 +36,12 @@ devtools::install_github("carlos-r-git/scriptsearch")
 ```
 ## Example
 
-The function `scriptsearch` lists all files in a directory that contain specified search terms.
+The function `scriptsearch` lists all files in a directory (defaults to present working directory) that contain specified search terms.
 
 ```{r example}
 library(scriptsearch)
 
-scriptsearch(dir = ".", searchterms = "search")
+scriptsearch("example")
 ```
 
 `showlines` can then be used on the output of `scriptsearch` to show all lines containing hits from the n^th^ file in the list.
@@ -49,19 +49,19 @@ scriptsearch(dir = ".", searchterms = "search")
 ```{r example2}
 library(scriptsearch)
 
-data <- scriptsearch(dir = ".", searchterms = "search")
+data <- scriptsearch("example")
 
-showlines(data = data, n = 1)
+showlines(data, 6)
 ```
 
 ## scriptsearch
 
 ```{r arguments, echo = FALSE}
 
-table1 <- data.frame("Argument" = c("dir", "searchterms", "rm", "filetypes"),
-                     "Default"  = c("N/A", "N/A", "TRUE", ".R, .Rmd"),
-                     "Function" = c("Path of the directory", "Strings to search for", "Remove files with no hits from output", "Strings to be recognised in file names"),
-                     "Example"  = c("\"./scripts\"", "c(\"text1\", \"text2\")", "TRUE", ".R, .Rmd"))
+table1 <- data.frame("Argument" = c("searchterms", "dir", "rm", "filetypes"),
+                     "Default"  = c("N/A", "\".\"", "TRUE", ".R, .Rmd"),
+                     "Function" = c("Strings to search for", "Directory to search", "Remove files with no hits from output", "Strings to be recognised in file names"),
+                     "Example"  = c("c(\"text1\", \"text2\")", "\"./scripts\"", "TRUE", ".R, .Rmd"))
 
 table1 %>% 
   knitr::kable()
