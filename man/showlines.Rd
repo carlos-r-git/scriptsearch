@@ -17,10 +17,11 @@ showlines(data, n, open = TRUE)
 Table with the line number and first 50 characters of each line that contains searchterms.
 }
 \description{
-Open and list lines containing searchterms from the nth file in the output of scriptsearch().
+List lines containing searchterms from a file from the output of scriptsearch().
 }
 \examples{
-
 data <- scriptsearch(".", "text")
-showlines(data, 1, open = TRUE)
+showlines(data, 1)
+
+showlines(data, 2, open = FALSE)
 }

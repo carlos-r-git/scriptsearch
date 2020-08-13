@@ -1,17 +1,21 @@
 #' scriptsearch
 #'
-#' Create a table listing files in a directory that contain specified strings.
+#' Creates a table listing files in a directory (defualts to present working directory) that contain specified strings.
 #'
-#' @param searchterms Strings to search for.
-#' @param dir Path of the directory.
-#' @param rm TRUE/FALSE for removing files with no hits from the output.
-#' @param filetypes Strings to be recognised in file names.
+#' @param searchterms String/ list of strings to search for.
+#' @param dir Path to the directory.
+#' @param rm Logical option for removing files with no hits from the output.
+#' @param filetypes String/list of strings to be recognised in file names.
 #'
-#' @return Data frame containing: file paths, TRUE/FALSE if text detected and search terms.
+#' @return Data frame containing the file paths, number of hits and search terms found in a directory.
 #' @export
 #'
 #' @examples
 #' scriptsearch("text")
+#'
+#' scriptsearch("text", filetypes = "workshop")
+#'
+#' data <- scriptsearch("text", rm = FALSE)
 
 scriptsearch <- function(searchterms, dir = ".", rm = TRUE, filetypes = c("\\.R$", "\\.Rmd$")) {
 

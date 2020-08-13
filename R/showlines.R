@@ -1,6 +1,6 @@
 #' showlines
 #'
-#' Open and list lines containing searchterms from the nth file in the output of scriptsearch().
+#' List lines containing searchterms from a file from the output of scriptsearch().
 #'
 #' @param data The data frame output from scriptsearch().
 #' @param n The index of the file to be searched.
@@ -10,9 +10,10 @@
 #' @export
 #'
 #' @examples
-#'
 #' data <- scriptsearch(".", "text")
-#' showlines(data, 1, open = TRUE)
+#' showlines(data, 1)
+#'
+#' showlines(data, 2, open = FALSE)
 
 showlines <- function(data, n, open = TRUE) {
 

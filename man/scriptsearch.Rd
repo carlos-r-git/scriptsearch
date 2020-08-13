@@ -5,27 +5,31 @@
 \title{scriptsearch}
 \usage{
 scriptsearch(
-  dir,
   searchterms,
+  dir = ".",
   rm = TRUE,
   filetypes = c("\\\\.R$", "\\\\.Rmd$")
 )
 }
 \arguments{
-\item{dir}{Path of the directory.}
+\item{searchterms}{String/ list of strings to search for.}
 
-\item{searchterms}{Strings to search for.}
+\item{dir}{Path to the directory.}
 
-\item{rm}{TRUE/FALSE for removing files with no hits from the output.}
+\item{rm}{Logical option for removing files with no hits from the output.}
 
-\item{filetypes}{Strings to be recognised in file names.}
+\item{filetypes}{String/list of strings to be recognised in file names.}
 }
 \value{
-Data frame containing: file paths, TRUE/FALSE if text detected and search terms.
+Data frame containing the file paths, number of hits and search terms found in a directory.
 }
 \description{
-Create a table listing files in a directory that contain specified strings.
+Creates a table listing files in a directory (defualts to present working directory) that contain specified strings.
 }
 \examples{
-scriptsearch(".", "x")
+scriptsearch("text")
+
+scriptsearch("text", filetypes = "workshop")
+
+data <- scriptsearch("text", rm = FALSE)
 }
