@@ -1,0 +1,229 @@
+---
+title: "Scriptsearch Testing"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = system.file("extdata/testing", package = "scriptsearch"))
+library(scriptsearch)
+```
+<br><br>
+
+## What is Scriptsearch for?
+
+Scriptsearch is an R package intended to help students search through their previous work. Poorly documented code can be hard to look back on, preventing you from reusing the solutions you've already written. This package contains two functions to help you search through your scripts. The source code can be found on github at https://github.com/carlos-r-git/scriptsearch.
+<br><br><br>
+This set of exercises is intended to show off the features of the package and how they can be used. The exercises can be completed by typing commands into the console or by making a new R script and running the commands line by line. At the end of this document is a link to a google form where you are welcome to give any feedback relating to the package.
+
+<br>
+
+## Installation
+
+[Download the folder containing the example R scripts](https://drive.google.com/file/d/1wlwFYbizduVpLE9qa1xJtXqEGXW33QYv/view?usp=sharing), as these will be used in the following exercises. These files can also be found in the path produced by `system.file("extdata/testing", package = "scriptsearch")`
+
+```{r files, echo = FALSE}
+
+list.files(".")
+
+```
+
+<br>
+
+## Exercises
+
+### 1) Set working directory
+
+Set the working directory of the current R session to the folder containing the R scripts (with the Session--Set Working Directory button in Rstudio or with `setwd("path/to/R Scripts")`). 
+<br><br><br>
+The function `scriptsearch()` defaults to searching the present working directory, so once this is set you will not need to enter a directory each time you use the function. Check that this worked by seeing if the output of `list.files(".")` matches the files above. 
+<br><br>
+<details>
+<summary> Click to reveal answer </summary>
+<p>
+
+```{r answer1, echo = TRUE}
+
+list.files(".")
+
+```
+
+</p>
+</details> 
+<br><br>
+
+### 2) Searching
+
+Let's search for some text in the example R scripts. The manual for `scriptsearch()` (?scriptsearch) describes each of the 4 arguments `scriptsearch()` takes and shows how they can be used. In summary: `searchterms` is the first argument and must be supplied, while the others have default values. 
+<br><br><br>
+`scriptsearch("text")` will take "text" as the value for `searchterms` and search in the present working directory for .R and .Rmd files that contain the word `text`. 
+<br><br><br>
+Use `scriptsearch()` to search for the function "t.test" and see which files show up. Which argument would you change so that files which don't contain "t.test" also appear in the output?
+<br><br>
+<details>
+<summary> Click to reveal answer </summary>
+<p>
+
+```{r answer2.1, echo = TRUE}
+
+scriptsearch("t.test", rm = FALSE)
+
+```
+
+</p>
+</details> 
+<br>
+
+The default value for `filetypes` selects for .R and .Rmd files. What would you enter for `filetypes` so that only the "exampleprac" files would be searched?
+<br><br>
+<details>
+<summary> Click to reveal answer </summary>
+<p>
+
+```{r answer2.2, echo = TRUE}
+
+scriptsearch("t.test", filetypes = "exampleprac", rm = FALSE)
+
+```
+
+</p>
+</details> 
+<br><br>
+
+### 3) Opening files
+
+We can now use the `showlines()` function to find where the "t.test" hits were. `showlines()` takes the output of `scriptsearch()` as its input. There are several ways to achieve this:
+
+1) Assign the output of `scriptsearch()` to an object using `<-` and use `showlines()` on that object
+
+2) Pipe the output of `scriptsearch()` into `showlines()` using ` %>% ` (requires magrittr, included in tidyverse)
+
+3) Nest the `scriptsearch()` function inside `showlines()`
+
+<br><br>
+Use `showlines()` to find where "t.test" appears in the file `exampleprac5.R` (It may help to use the scriptsearch function first to find the index of the file you want to check)
+<br><br>
+<details>
+<summary> Click to reveal answer </summary>
+<p>
+
+```{r answer3.1, echo = TRUE}
+
+data <- scriptsearch("t.test", filetypes = "exampleprac", rm = FALSE)
+data
+
+```
+
+```{r answer3.2, eval = FALSE, echo = TRUE}
+
+showlines(data, 3)
+
+```
+
+```{r answer3.3, echo = FALSE}
+
+showlines(data, 3, open = FALSE)
+
+```
+
+Alternative methods:
+
+```{r answer3.4, eval = FALSE, echo = TRUE}
+
+scriptsearch("t.test", filetypes = "exampleprac", rm = FALSE) %>% showlines(., 3)
+
+showlines(scriptsearch("t.test", filetypes = "exampleprac", rm = FALSE), 3)
+
+```
+
+</p>
+</details> 
+<br><br>
+
+### 4) Reading the output
+
+Once the output of `scriptsearch()` is in an object it can be read just like any other data frame. 
+<br><br><br>
+Can you find the total number of times "ggplot" appears in the example scripts? 
+
+Which file contains "ggplot" the most?
+<br><br>
+<details>
+<summary> Click to reveal answer </summary>
+<p>
+
+```{r answer4.1, echo = TRUE}
+
+data <- scriptsearch("ggplot")
+
+total <- sum(data$Hits)
+
+most <- data$Path[which.max(data$Hits)]
+
+```
+
+```{r answer4.2, echo = FALSE}
+
+data
+
+paste("Total number of ggplots:", total)
+
+paste("File with most ggplots:", most)
+
+```
+
+</p>
+</details> 
+<br><br>
+
+### 5) No hits found?
+
+What happens if you search for a string which does not appear in any of the files? Try searching for a long nonsense string with and without `rm = FALSE`. 
+<br><br>
+<details>
+<summary> Click to reveal answer </summary>
+<p>
+
+```{r answer5.1, echo = TRUE}
+
+scriptsearch("zzzz")
+scriptsearch("zzzz", rm = FALSE)
+
+```
+
+</p>
+</details>
+<br>
+
+Now try using `showlines()` to read a file which didn't contain any hits (you will need to use `rm = FALSE` for `scriptsearch()`). 
+<br><br>
+<details>
+<summary> Click to reveal answer </summary>
+<p>
+
+```{r answer5.2, echo = TRUE}
+
+no_files <- scriptsearch("zzzz") 
+showlines(no_files, 1)
+
+no_hits <- scriptsearch("zzzz", rm = FALSE)
+showlines(no_hits, 1)
+
+```
+
+</p>
+</details>
+
+<br>
+
+## Feedback
+
+Please find below a short google form (5 questions) where you can send feedback relating to scriptsearch:
+
+[Link to form](https://docs.google.com/forms/d/e/1FAIpQLScj6yDxY8wP5VOwUZMjq8GV534ZpMn9JkpdEfDl_uFw1fHL1A/viewform?usp=sf_link)
+
+Thanks for testing scriptsearch!
