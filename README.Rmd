@@ -9,8 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
-)
+  out.width = "100%")
+knitr::opts_knit$set(root.dir = system.file("extdata/testing", package = "scriptsearch"))
 ```
 
 # scriptsearch
@@ -60,7 +60,7 @@ library(scriptsearch)
 
 data <- scriptsearch("example")
 
-showlines(data, 6)
+showlines(data, 2)
 ```
 
 ## Arguments

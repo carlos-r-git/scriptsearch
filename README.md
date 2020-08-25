@@ -47,16 +47,9 @@ present working directory) that contain specified search terms.
 library(scriptsearch)
 
 scriptsearch("example")
-#>                                                  Path Hits Searchterms
-#> 1 ./inst/extdata/testing/08CorrelationAndRegression.R    1     example
-#> 2  ./inst/extdata/testing/09DevelopingUnderstanding.R    1     example
-#> 3                                     ./R/findlines.R    1     example
-#> 4                                  ./R/scriptsearch.R    1     example
-#> 5                                     ./R/searchdir.R    1     example
-#> 6                                 ./R/shortenstring.R    1     example
-#> 7                                     ./R/showlines.R    1     example
-#> 8                                        ./README.Rmd    4     example
-#> 9                ./vignettes/scriptsearch-testing.Rmd    9     example
+#>                             Path Hits Searchterms
+#> 1 ./08CorrelationAndRegression.R    1     example
+#> 2  ./09DevelopingUnderstanding.R    1     example
 ```
 
 `showlines` can then be used on the output of `scriptsearch` to show all
@@ -67,10 +60,10 @@ library(scriptsearch)
 
 data <- scriptsearch("example")
 
-showlines(data, 6)
-#> * Edit './R/shortenstring.R'
-#>   Line         Text
-#> 1   10 #' @examples
+showlines(data, 2)
+#> * Edit './09DevelopingUnderstanding.R'
+#>   Line                                        Text
+#> 1   82 ## # for example, the binomial distribution
 ```
 
 ## Arguments
