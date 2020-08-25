@@ -18,21 +18,30 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-Scriptsearch is a package for searching R scripts you have previously made, but forgot to document. This is intended to help students look back at their old work and enable them to reuse solutions they have already learned.
+Scriptsearch is an R package intended to help students search through their previous work. Poorly documented code can be hard to look back on, preventing you from reusing the solutions you've already written. This package contains two functions to help you search through your scripts.
 
 ## Installation
 
-(Coming soon) You can install the released version of scriptsearch from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("scriptsearch")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+Install scriptsearch from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("carlos-r-git/scriptsearch")
+```
+
+To view exercises for testing scriptsearch, add `build_vignettes = TRUE` to the install function and view the vignette with `browseVignettes("scriptsearch")`
+
+``` r
+# install.packages("devtools")
+devtools::install_github("carlos-r-git/scriptsearch, build_vignettes = TRUE")
+browseVignettes("scriptsearch")
+```
+
+<br><br>
+*(Coming soon)* You can install the released version of scriptsearch from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("scriptsearch")
 ```
 ## Example
 
@@ -54,7 +63,9 @@ data <- scriptsearch("example")
 showlines(data, 6)
 ```
 
-## scriptsearch
+## Arguments
+
+### scriptsearch
 
 ```{r arguments, echo = FALSE}
 
@@ -68,7 +79,7 @@ table1 %>%
 
 ```
 
-## showlines
+### showlines
 
 ```{r arguments2, echo = FALSE}
 

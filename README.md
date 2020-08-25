@@ -7,25 +7,35 @@
 
 <!-- badges: end -->
 
-Scriptsearch is a package for searching R scripts you have previously
-made, but forgot to document. This is intended to help students look
-back at their old work and enable them to reuse solutions they have
-already learned.
+Scriptsearch is an R package intended to help students search through
+their previous work. Poorly documented code can be hard to look back on,
+preventing you from reusing the solutions you’ve already written. This
+package contains two functions to help you search through your scripts.
 
 ## Installation
 
-(Coming soon) You can install the released version of scriptsearch from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("scriptsearch")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+Install scriptsearch from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("carlos-r-git/scriptsearch")
+```
+
+To view exercises for testing scriptsearch, add `build_vignettes = TRUE`
+to the install function and view the vignette with
+`browseVignettes("scriptsearch")`
+
+``` r
+# install.packages("devtools")
+devtools::install_github("carlos-r-git/scriptsearch, build_vignettes = TRUE")
+browseVignettes("scriptsearch")
+```
+
+<br><br> *(Coming soon)* You can install the released version of
+scriptsearch from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("scriptsearch")
 ```
 
 ## Example
@@ -37,33 +47,35 @@ present working directory) that contain specified search terms.
 library(scriptsearch)
 
 scriptsearch("example")
-#>                  Path Hits Searchterms
-#> 1     ./R/findlines.R    1     example
-#> 2  ./R/scriptsearch.R    1     example
-#> 3     ./R/searchdir.R    1     example
-#> 4 ./R/shortenstring.R    1     example
-#> 5     ./R/showlines.R    1     example
-#> 6        ./README.Rmd    4     example
+#>                                                  Path Hits Searchterms
+#> 1 ./inst/extdata/testing/08CorrelationAndRegression.R    1     example
+#> 2  ./inst/extdata/testing/09DevelopingUnderstanding.R    1     example
+#> 3                                     ./R/findlines.R    1     example
+#> 4                                  ./R/scriptsearch.R    1     example
+#> 5                                     ./R/searchdir.R    1     example
+#> 6                                 ./R/shortenstring.R    1     example
+#> 7                                     ./R/showlines.R    1     example
+#> 8                                        ./README.Rmd    4     example
+#> 9                ./vignettes/scriptsearch-testing.Rmd    9     example
 ```
 
 `showlines` can then be used on the output of `scriptsearch` to show all
 lines containing hits from the n<sup>th</sup> file in the list.
 
-```` r
+``` r
 library(scriptsearch)
 
 data <- scriptsearch("example")
 
 showlines(data, 6)
-#> * Edit './README.Rmd'
-#>   Line                            Text
-#> 1   41                  ```{r example}
-#> 2   44         scriptsearch("example")
-#> 3   49                 ```{r example2}
-#> 4   52 data <- scriptsearch("example")
-````
+#> * Edit './R/shortenstring.R'
+#>   Line         Text
+#> 1   10 #' @examples
+```
 
-## scriptsearch
+## Arguments
+
+### scriptsearch
 
 | Argument    | Default  | Function                               | Example             |
 | :---------- | :------- | :------------------------------------- | :------------------ |
@@ -72,7 +84,7 @@ showlines(data, 6)
 | rm          | TRUE     | Remove files with no hits from output  | TRUE                |
 | filetypes   | .R, .Rmd | Strings to be recognised in file names | .R, .Rmd            |
 
-## showlines
+### showlines
 
 | Argument | Default | Function                               | Example                                    |
 | :------- | :------ | :------------------------------------- | :----------------------------------------- |
