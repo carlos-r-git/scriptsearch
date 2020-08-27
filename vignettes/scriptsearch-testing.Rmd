@@ -123,7 +123,7 @@ We can now use the `showlines()` function to find where the "t.test" hits were. 
 3) Nest the `scriptsearch()` function inside `showlines()`
 
 <br><br>
-Use `showlines()` to find where "t.test" appears in the file `exampleprac5.R` (It may help to use the scriptsearch function first to find the index of the file you want to check)
+Use `showlines()` to find where "t.test" appears in the file `exampleprac5.Rmd` (It may help to use the scriptsearch function first to find the index of the file you want to check)
 <br><br>
 <details>
 <summary> Click to reveal answer </summary>
