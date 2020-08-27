@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-Scriptsearch is an R package intended to help students search through
+Scriptsearch is an R package intended to help people search through
 their previous work. Poorly documented code can be hard to look back on,
 preventing you from reusing the solutions you’ve already written. This
 package contains two functions to help you search through your scripts.
