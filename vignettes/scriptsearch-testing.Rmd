@@ -24,11 +24,13 @@ This set of exercises is intended to show off the features of the package and ho
 
 ## Installation
 
-[Download the folder containing the example R scripts](https://drive.google.com/file/d/1wlwFYbizduVpLE9qa1xJtXqEGXW33QYv/view?usp=sharing), as these will be used in the following exercises. These files can also be found in the path produced by `system.file("extdata/testing", package = "scriptsearch")`
+The scriptsearch package contains a folder of example scripts that will be used in these exercises. These files can be found in the path produced by `system.file("extdata/testing", package = "scriptsearch")`
 
-```{r files, echo = FALSE}
+```{r files, echo = TRUE}
 
-list.files(".")
+fpath <- system.file("extdata/testing", package = "scriptsearch")
+
+list.files(fpath)
 
 ```
 
@@ -36,11 +38,9 @@ list.files(".")
 
 ## Exercises
 
-### 1) Set working directory
+### 1) Find example files
 
-Set the working directory of the current R session to the folder containing the R scripts (with the Session--Set Working Directory button in Rstudio or with `setwd("path/to/R Scripts")`). 
-<br><br><br>
-The function `scriptsearch()` defaults to searching the present working directory, so once this is set you will not need to enter a directory each time you use the function. Check that this worked by seeing if the output of `list.files(".")` matches the files above. 
+The function `scriptsearch()` defaults to searching the present working directory, so you will need to set the argument `dir` to match the path containing the example files (alternatively you can set your working directory to the folder containing the example files). Check that you can find the files with `list.files()` 
 <br><br>
 <details>
 <summary> Click to reveal answer </summary>
@@ -48,7 +48,9 @@ The function `scriptsearch()` defaults to searching the present working director
 
 ```{r answer1, echo = TRUE}
 
-list.files(".")
+fpath <- system.file("extdata/testing", package = "scriptsearch")
+
+list.files(fpath)
 
 ```
 
@@ -58,9 +60,19 @@ list.files(".")
 
 ### 2) Searching
 
-Let's search for some text in the example R scripts. The manual for `scriptsearch()` (?scriptsearch) describes each of the 4 arguments `scriptsearch()` takes and shows how they can be used. In summary: `searchterms` is the first argument and must be supplied, while the others have default values. 
+Let's search for some text in the example R scripts. `scriptsearch()` takes 4 arguments:
+
+1) `searchterms` - Text you will search for in the target files
+
+2) `dir` - Path to directory containing target files
+
+3) `rm` - Logical for removing files with no hits from the output
+
+4) `filetypes` - File endings used to filter target files
+
+Arguments 2,3,4 have default values, however `searchterms` must always be supplied manually. Make sure to use `library(scriptsearch)` so that the scriptsearch functions are available.
 <br><br><br>
-`scriptsearch("text")` will take "text" as the value for `searchterms` and search in the present working directory for .R and .Rmd files that contain the word `text`. 
+`scriptsearch("text", dir = fpath)` will take "text" as the value for `searchterms` and search in `fpath` for .R and .Rmd files that contain the word `text`. 
 <br><br><br>
 Use `scriptsearch()` to search for the function "t.test" and see which files show up. Which argument would you change so that files which don't contain "t.test" also appear in the output?
 <br><br>
@@ -68,9 +80,15 @@ Use `scriptsearch()` to search for the function "t.test" and see which files sho
 <summary> Click to reveal answer </summary>
 <p>
 
-```{r answer2.1, echo = TRUE}
+```{r answer2.0, eval = TRUE, echo = FALSE}
 
-scriptsearch("t.test", rm = FALSE)
+fpath <- "."
+
+```
+
+```{r answer2.1, eval = TRUE, echo = TRUE}
+
+scriptsearch("t.test", dir = fpath, rm = FALSE)
 
 ```
 
@@ -78,7 +96,7 @@ scriptsearch("t.test", rm = FALSE)
 </details> 
 <br>
 
-The default value for `filetypes` selects for .R and .Rmd files. What would you enter for `filetypes` so that only the "exampleprac" files would be searched?
+The default value for `filetypes` selects for .R and .Rmd files. What would you enter for `filetypes` so that only the "exampleprac.Rmd" files would be searched?
 <br><br>
 <details>
 <summary> Click to reveal answer </summary>
@@ -86,7 +104,7 @@ The default value for `filetypes` selects for .R and .Rmd files. What would you 
 
 ```{r answer2.2, echo = TRUE}
 
-scriptsearch("t.test", filetypes = "exampleprac", rm = FALSE)
+scriptsearch("t.test", dir = fpath, filetypes = "Rmd", rm = FALSE)
 
 ```
 
@@ -100,7 +118,7 @@ We can now use the `showlines()` function to find where the "t.test" hits were. 
 
 1) Assign the output of `scriptsearch()` to an object using `<-` and use `showlines()` on that object
 
-2) Pipe the output of `scriptsearch()` into `showlines()` using ` %>% ` (requires magrittr, included in tidyverse)
+2) Pipe the output of `scriptsearch()` into `showlines()` using ` %>% ` (requires `library(magrittr)` or `library(tidyverse)`)
 
 3) Nest the `scriptsearch()` function inside `showlines()`
 
@@ -113,20 +131,20 @@ Use `showlines()` to find where "t.test" appears in the file `exampleprac5.R` (I
 
 ```{r answer3.1, echo = TRUE}
 
-data <- scriptsearch("t.test", filetypes = "exampleprac", rm = FALSE)
+data <- scriptsearch("t.test", dir = fpath, rm = FALSE)
 data
 
 ```
 
 ```{r answer3.2, eval = FALSE, echo = TRUE}
 
-showlines(data, 3)
+showlines(data, 12)
 
 ```
 
 ```{r answer3.3, echo = FALSE}
 
-showlines(data, 3, open = FALSE)
+showlines(data, 12, open = FALSE)
 
 ```
 
@@ -134,9 +152,9 @@ Alternative methods:
 
 ```{r answer3.4, eval = FALSE, echo = TRUE}
 
-scriptsearch("t.test", filetypes = "exampleprac", rm = FALSE) %>% showlines(., 3)
+scriptsearch("t.test", dir = fpath, rm = FALSE) %>% showlines(., 12)
 
-showlines(scriptsearch("t.test", filetypes = "exampleprac", rm = FALSE), 3)
+showlines(scriptsearch("t.test", dir = fpath, rm = FALSE), 12)
 
 ```
 
@@ -158,21 +176,13 @@ Which file contains "ggplot" the most?
 
 ```{r answer4.1, echo = TRUE}
 
-data <- scriptsearch("ggplot")
+data <- scriptsearch("ggplot", dir = fpath)
 
-total <- sum(data$Hits)
+# total "ggplot"
+sum(data$Hits)
 
-most <- data$Path[which.max(data$Hits)]
-
-```
-
-```{r answer4.2, echo = FALSE}
-
-data
-
-paste("Total number of ggplots:", total)
-
-paste("File with most ggplots:", most)
+# file with most "ggplot"
+data$Path[which.max(data$Hits)]
 
 ```
 
