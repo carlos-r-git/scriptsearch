@@ -48,7 +48,7 @@ scriptsearch <- function(searchterms, dir = ".", rm = TRUE, filetypes = c("R", "
 
     temppos <- findlines(tempdata = tempdata, searchterms = searchterms)
 
-    data[j,1] <- paste0(dir,"/",files[j])
+    data[j,1] <- paste0(paste0(dir,"/",files[j]))
 
     data[j,2] <- length(temppos)
 
