@@ -1,11 +1,11 @@
 #' scriptsearch
 #'
-#' Creates a table listing files in a directory (defualts to present working directory) that contain specified strings.
+#' Returns the number of times a searchterm appears in each file in a path (defaults to working directory).
 #'
 #' @param searchterms String/ list of strings to search for.
 #' @param dir Path to the directory.
 #' @param rm Logical option for removing files with no hits from the output.
-#' @param filetypes String/list of strings to be recognised in file names.
+#' @param filetypes String/list of strings to be recognised in file endings.
 #'
 #' @return Data frame containing the file paths, number of hits and search terms found in a directory.
 #' @export
@@ -17,7 +17,7 @@
 #'
 #' data <- scriptsearch("text", rm = FALSE)
 
-scriptsearch <- function(searchterms, dir = ".", rm = TRUE, filetypes = c("\\.R$", "\\.Rmd$")) {
+scriptsearch <- function(searchterms, dir = ".", rm = TRUE, filetypes = c("R", "Rmd")) {
 
   coll <- checkmate::makeAssertCollection()
   checkmate::assertCharacter(searchterms)
@@ -25,6 +25,12 @@ scriptsearch <- function(searchterms, dir = ".", rm = TRUE, filetypes = c("\\.R$
   checkmate::assertLogical(rm)
   checkmate::assertCharacter(filetypes)
   checkmate::reportAssertions(coll)
+
+  for (i in 1:length(filetypes)) {
+
+    filetypes[i] <- paste0("\\.", filetypes[i], "$")
+
+  }
 
   files <- searchdir(dir = dir, filetypes = filetypes)
 
@@ -36,15 +42,15 @@ scriptsearch <- function(searchterms, dir = ".", rm = TRUE, filetypes = c("\\.R$
 
   data <- data.frame("Path" = 1:length(files), "Hits" = 0, "Searchterms" = 0)
 
-  for (i in 1:length(files)) {
+  for (j in 1:length(files)) {
 
-    tempdata <- readLines(paste0(dir,"/",files[i]), warn = FALSE)
+    tempdata <- readLines(paste0(dir,"/",files[j]), warn = FALSE)
 
     temppos <- findlines(tempdata = tempdata, searchterms = searchterms)
 
-    data[i,1] <- paste0(dir,"/",files[i])
+    data[j,1] <- paste0(dir,"/",files[j])
 
-    data[i,2] <- length(temppos)
+    data[j,2] <- length(temppos)
 
   }
 

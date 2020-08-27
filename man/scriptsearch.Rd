@@ -4,12 +4,7 @@
 \alias{scriptsearch}
 \title{scriptsearch}
 \usage{
-scriptsearch(
-  searchterms,
-  dir = ".",
-  rm = TRUE,
-  filetypes = c("\\\\.R$", "\\\\.Rmd$")
-)
+scriptsearch(searchterms, dir = ".", rm = TRUE, filetypes = c("R", "Rmd"))
 }
 \arguments{
 \item{searchterms}{String/ list of strings to search for.}
@@ -18,13 +13,13 @@ scriptsearch(
 
 \item{rm}{Logical option for removing files with no hits from the output.}
 
-\item{filetypes}{String/list of strings to be recognised in file names.}
+\item{filetypes}{String/list of strings to be recognised in file endings.}
 }
 \value{
 Data frame containing the file paths, number of hits and search terms found in a directory.
 }
 \description{
-Creates a table listing files in a directory (defualts to present working directory) that contain specified strings.
+Returns the number of times a searchterm appears in each file in a path (defaults to working directory).
 }
 \examples{
 scriptsearch("text")

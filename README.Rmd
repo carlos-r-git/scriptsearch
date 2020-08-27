@@ -70,9 +70,9 @@ showlines(data, 2)
 ```{r arguments, echo = FALSE}
 
 table1 <- data.frame("Argument" = c("searchterms", "dir", "rm", "filetypes"),
-                     "Default"  = c("N/A", "\".\"", "TRUE", ".R, .Rmd"),
+                     "Default"  = c("N/A", "\".\"", "TRUE", "c(\"R\", \"Rmd\")"),
                      "Function" = c("Strings to search for", "Directory to search", "Remove files with no hits from output", "Strings to be recognised in file names"),
-                     "Example"  = c("c(\"text1\", \"text2\")", "\"./scripts\"", "TRUE", ".R, .Rmd"))
+                     "Example"  = c("c(\"text1\", \"text2\")", "\"./scripts\"", "TRUE", "txt"))
 
 table1 %>% 
   knitr::kable()

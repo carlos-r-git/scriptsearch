@@ -4,6 +4,6 @@ test_that("shows lines", {
                       "Text" = c("x", "y"),
                       stringsAsFactors = FALSE)
 
-  expect_equal(showlines(scriptsearch(c("x", "y"), system.file("extdata", package = "scriptsearch"), filetypes = "\\.txt$"), 1, open = FALSE), data1)
+  expect_equal(showlines(scriptsearch(c("x", "y"), system.file("extdata", package = "scriptsearch"), filetypes = "txt"), 1, open = FALSE), data1)
 
 })

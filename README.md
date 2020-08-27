@@ -70,12 +70,12 @@ showlines(data, 2)
 
 ### scriptsearch
 
-| Argument    | Default  | Function                               | Example             |
-| :---------- | :------- | :------------------------------------- | :------------------ |
-| searchterms | N/A      | Strings to search for                  | c(“text1”, “text2”) |
-| dir         | “.”      | Directory to search                    | “./scripts”         |
-| rm          | TRUE     | Remove files with no hits from output  | TRUE                |
-| filetypes   | .R, .Rmd | Strings to be recognised in file names | .R, .Rmd            |
+| Argument    | Default       | Function                               | Example             |
+| :---------- | :------------ | :------------------------------------- | :------------------ |
+| searchterms | N/A           | Strings to search for                  | c(“text1”, “text2”) |
+| dir         | “.”           | Directory to search                    | “./scripts”         |
+| rm          | TRUE          | Remove files with no hits from output  | TRUE                |
+| filetypes   | c(“R”, “Rmd”) | Strings to be recognised in file names | txt                 |
 
 ### showlines
 
