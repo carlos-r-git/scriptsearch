@@ -16,7 +16,7 @@ library(scriptsearch)
 
 ## What is Scriptsearch for?
 
-Scriptsearch is an R package intended to help students search through their previous work. Poorly documented code can be hard to look back on, preventing you from reusing the solutions you've already written. This package contains two functions to help you search through your scripts. The source code can be found on github at https://github.com/carlos-r-git/scriptsearch.
+Scriptsearch is an R package intended to help people search through their previous work. Poorly documented code can be hard to look back on, preventing you from reusing the solutions you've already written. This package contains two functions to help you search through your scripts. The source code can be found on github at https://github.com/carlos-r-git/scriptsearch.
 <br><br><br>
 This set of exercises is intended to show off the features of the package and how they can be used. The exercises can be completed by typing commands into the console or by making a new R script and running the commands line by line. At the end of this document is a link to a google form where you are welcome to give any feedback relating to the package.
 
