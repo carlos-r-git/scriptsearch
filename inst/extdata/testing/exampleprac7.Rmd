@@ -1,3 +1,8 @@
+---
+title: "exampleprac7"
+output: html_document
+---
+
 ######################################################################
 #                                                                    #
 #   The effect of different growth media on the growth of            #

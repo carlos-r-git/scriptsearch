@@ -1,3 +1,8 @@
+---
+title: "exampleprac8.Rmd"
+output: html_document
+---
+
 ######################################################################
 #                                                                    #
 #   The effect of Juvenile hormone on mandible size in stag beetles. #

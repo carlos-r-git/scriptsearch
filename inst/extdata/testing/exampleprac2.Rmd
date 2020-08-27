@@ -1,3 +1,8 @@
+---
+title: "exampleprac2"
+output: html_document
+---
+
 ######################################################################
 #                                                                    #
 #   This script covers two exercises from the 17C practical          #
