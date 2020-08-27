@@ -50,6 +50,12 @@ scriptsearch("example")
 #>                             Path Hits Searchterms
 #> 1 ./08CorrelationAndRegression.R    1     example
 #> 2  ./09DevelopingUnderstanding.R    1     example
+#> 3             ./exampleprac2.Rmd    1     example
+#> 4             ./exampleprac4.Rmd    1     example
+#> 5             ./exampleprac5.Rmd    1     example
+#> 6             ./exampleprac6.Rmd    1     example
+#> 7             ./exampleprac7.Rmd    1     example
+#> 8             ./exampleprac8.Rmd    1     example
 ```
 
 `showlines` can then be used on the output of `scriptsearch` to show all
