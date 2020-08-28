@@ -6,6 +6,7 @@
 #' @param dir Path to the directory.
 #' @param rm Logical option for removing files with no hits from the output.
 #' @param filetypes String/list of strings to be recognised in file endings.
+#' @param escape Logical option for adding escape characters to special characters.
 #'
 #' @return Data frame containing the file paths, number of hits and search terms found in a directory.
 #' @export
@@ -13,18 +14,35 @@
 #' @examples
 #' scriptsearch("text")
 #'
-#' scriptsearch("text", filetypes = "workshop")
+#' scriptsearch("text", filetypes = "txt")
 #'
 #' data <- scriptsearch("text", rm = FALSE)
 
-scriptsearch <- function(searchterms, dir = ".", rm = TRUE, filetypes = c("R", "Rmd")) {
+scriptsearch <- function(searchterms, dir = ".", rm = TRUE, filetypes = c("R", "Rmd"), escape = TRUE) {
 
   coll <- checkmate::makeAssertCollection()
   checkmate::assertCharacter(searchterms)
   checkmate::assertDirectoryExists(dir)
   checkmate::assertLogical(rm)
   checkmate::assertCharacter(filetypes)
+  checkmate::assertLogical(escape)
   checkmate::reportAssertions(coll)
+
+  if (isTRUE(escape)) {
+
+    specials <- c("\\", "^", "$", ".", "|", "?", "*", "+", "(", ")", "[", "{")
+
+    for (h in 1:length(searchterms)){
+
+      for(char in specials){
+
+        searchterms[h] <- gsub(char, paste0("\\", char), searchterms[h], fixed = TRUE)
+
+        }
+
+     }
+
+  }
 
   for (i in 1:length(filetypes)) {
 

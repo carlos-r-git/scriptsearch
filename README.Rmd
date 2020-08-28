@@ -45,37 +45,65 @@ install.packages("scriptsearch")
 ```
 ## Example
 
-The function `scriptsearch` lists all files in a directory (defaults to present working directory) that contain specified search terms.
+The function `scriptsearch()` lists all files in a directory (defaults to present working directory) that contain specified search terms.
 
-```{r example}
+```{r example1}
+
 library(scriptsearch)
 
 scriptsearch("example")
+
 ```
 
-`showlines` can then be used on the output of `scriptsearch` to show all lines containing hits from the n^th^ file in the list.
+By default `scriptsearch()` will add escape characters to special characters in the searchterms string (using [this](https://github.com/richierocks/rebus.base/blob/master/R/escape_special.R) method). The special characters recognised are: 
+`\\ ^ $ . | ? * + ( ) [ {`
 
 ```{r example2}
+
+scriptsearch("t.test")
+
+```
+
+`showlines()` can then be used on the output of `scriptsearch` to show all lines containing hits from the n^th^ file in the list.
+
+```{r example3}
+
 library(scriptsearch)
 
 data <- scriptsearch("example")
 
 showlines(data, 2)
+
 ```
 
 ## Arguments
 
 ### scriptsearch
 
-```{r arguments, echo = FALSE}
+```{r arguments1, echo = FALSE}
 
-table1 <- data.frame("Argument" = c("searchterms", "dir", "rm", "filetypes"),
-                     "Default"  = c("N/A", "\".\"", "TRUE", "c(\"R\", \"Rmd\")"),
-                     "Function" = c("Strings to search for", "Directory to search", "Remove files with no hits from output", "Strings to be recognised in file names"),
-                     "Example"  = c("c(\"text1\", \"text2\")", "\"./scripts\"", "TRUE", "txt"))
+table1 <- data.frame("Argument" = c("searchterms", 
+                                    "dir", 
+                                    "rm", 
+                                    "filetypes", 
+                                    "escape"),
+                     "Default"  = c("N/A", 
+                                    "\".\"", 
+                                    "TRUE", 
+                                    "c(\"R\", \"Rmd\")", 
+                                    "TRUE"),
+                     "Function" = c("Strings to search for", 
+                                    "Directory to search", 
+                                    "Remove files with no hits from output", 
+                                    "File endings recognised", 
+                                    "Add escape characters"),
+                     "Example"  = c("c(\"text1\", \"text2\")", 
+                                    "\"./scripts\"", 
+                                    "TRUE", 
+                                    "txt", 
+                                    "TRUE"))
 
-table1 %>% 
-  knitr::kable()
+table1 %>% knitr::kable()
 
 ```
 
@@ -83,12 +111,19 @@ table1 %>%
 
 ```{r arguments2, echo = FALSE}
 
-table2 <- data.frame("Argument" = c("data", "n", "open"),
-                     "Default"  = c("N/A", "N/A", "TRUE"),
-                     "Function" = c("Table containing files and searchterms", "Row number of the file to be searched", "Open selected file"),
-                     "Example"  = c("data <- scriptsearch(\"./scripts\", \"text\")", "1", "TRUE"))
+table2 <- data.frame("Argument" = c("data", 
+                                    "n", 
+                                    "open"),
+                     "Default"  = c("N/A", 
+                                    "N/A", 
+                                    "TRUE"),
+                     "Function" = c("Table containing files and searchterms", 
+                                    "Index of the file to be searched", 
+                                    "Open selected file"),
+                     "Example"  = c("data <- scriptsearch(\"./scripts\", \"text\")", 
+                                    "1", 
+                                    "TRUE"))
 
-table2 %>% 
-  knitr::kable()
+table2 %>% knitr::kable()
 
 ```

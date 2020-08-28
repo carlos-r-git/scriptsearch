@@ -40,10 +40,11 @@ install.packages("scriptsearch")
 
 ## Example
 
-The function `scriptsearch` lists all files in a directory (defaults to
-present working directory) that contain specified search terms.
+The function `scriptsearch()` lists all files in a directory (defaults
+to present working directory) that contain specified search terms.
 
 ``` r
+
 library(scriptsearch)
 
 scriptsearch("example")
@@ -58,10 +59,26 @@ scriptsearch("example")
 #> 8             ./exampleprac8.Rmd    1     example
 ```
 
-`showlines` can then be used on the output of `scriptsearch` to show all
-lines containing hits from the n<sup>th</sup> file in the list.
+By default `scriptsearch()` will add escape characters to special
+characters in the searchterms string (using
+[this](https://github.com/richierocks/rebus.base/blob/master/R/escape_special.R)
+method). The special characters recognised are: `\\ ^ $ . | ? * + ( ) [
+{`
 
 ``` r
+
+scriptsearch("t.test")
+#>                            Path Hits Searchterms
+#> 1    ./05OneAndTwoSampleTests.R    4    t\\.test
+#> 2 ./09DevelopingUnderstanding.R    1    t\\.test
+#> 3            ./exampleprac5.Rmd    1    t\\.test
+```
+
+`showlines()` can then be used on the output of `scriptsearch` to show
+all lines containing hits from the n<sup>th</sup> file in the list.
+
+``` r
+
 library(scriptsearch)
 
 data <- scriptsearch("example")
@@ -76,17 +93,18 @@ showlines(data, 2)
 
 ### scriptsearch
 
-| Argument    | Default       | Function                               | Example             |
-| :---------- | :------------ | :------------------------------------- | :------------------ |
-| searchterms | N/A           | Strings to search for                  | c(“text1”, “text2”) |
-| dir         | “.”           | Directory to search                    | “./scripts”         |
-| rm          | TRUE          | Remove files with no hits from output  | TRUE                |
-| filetypes   | c(“R”, “Rmd”) | Strings to be recognised in file names | txt                 |
+| Argument    | Default       | Function                              | Example             |
+| :---------- | :------------ | :------------------------------------ | :------------------ |
+| searchterms | N/A           | Strings to search for                 | c(“text1”, “text2”) |
+| dir         | “.”           | Directory to search                   | “./scripts”         |
+| rm          | TRUE          | Remove files with no hits from output | TRUE                |
+| filetypes   | c(“R”, “Rmd”) | File endings recognised               | txt                 |
+| escape      | TRUE          | Add escape characters                 | TRUE                |
 
 ### showlines
 
 | Argument | Default | Function                               | Example                                    |
 | :------- | :------ | :------------------------------------- | :----------------------------------------- |
 | data     | N/A     | Table containing files and searchterms | data \<- scriptsearch(“./scripts”, “text”) |
-| n        | N/A     | Row number of the file to be searched  | 1                                          |
+| n        | N/A     | Index of the file to be searched       | 1                                          |
 | open     | TRUE    | Open selected file                     | TRUE                                       |

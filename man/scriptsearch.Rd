@@ -4,7 +4,13 @@
 \alias{scriptsearch}
 \title{scriptsearch}
 \usage{
-scriptsearch(searchterms, dir = ".", rm = TRUE, filetypes = c("R", "Rmd"))
+scriptsearch(
+  searchterms,
+  dir = ".",
+  rm = TRUE,
+  filetypes = c("R", "Rmd"),
+  escape = TRUE
+)
 }
 \arguments{
 \item{searchterms}{String/ list of strings to search for.}
@@ -14,6 +20,8 @@ scriptsearch(searchterms, dir = ".", rm = TRUE, filetypes = c("R", "Rmd"))
 \item{rm}{Logical option for removing files with no hits from the output.}
 
 \item{filetypes}{String/list of strings to be recognised in file endings.}
+
+\item{escape}{Logical option for adding escape characters to special characters.}
 }
 \value{
 Data frame containing the file paths, number of hits and search terms found in a directory.
@@ -24,7 +32,7 @@ Returns the number of times a searchterm appears in each file in a path (default
 \examples{
 scriptsearch("text")
 
-scriptsearch("text", filetypes = "workshop")
+scriptsearch("text", filetypes = "txt")
 
 data <- scriptsearch("text", rm = FALSE)
 }
